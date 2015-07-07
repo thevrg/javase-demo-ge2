@@ -2,10 +2,10 @@ package hu.dpc.edu.javase.demo.main;
 
 import hu.dpc.edu.javase.demo.Department;
 import hu.dpc.edu.javase.demo.Employee;
-import hu.dpc.edu.javase.demo.EmployeeIterator;
 import hu.dpc.edu.javase.demo.InfoExposerBaseClass;
 import hu.dpc.edu.javase.demo.InfoProducer;
 import hu.dpc.edu.javase.demo.Manager;
+import java.util.Iterator;
 
 /**
  *
@@ -13,8 +13,7 @@ import hu.dpc.edu.javase.demo.Manager;
  */
 public class AbstractDemo {
     
-    
-    public static void printEmployees(EmployeeIterator ei) {
+    public static void printEmployees(Iterator<? extends Employee> ei) {
         while(ei.hasNext()) {
             Employee emp = ei.next();
             System.out.println("emp: " + emp);

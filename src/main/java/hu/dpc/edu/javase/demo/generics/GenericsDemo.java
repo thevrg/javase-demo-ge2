@@ -1,4 +1,4 @@
-package hu.dpc.edu.javase.demo.nested.generics;
+package hu.dpc.edu.javase.demo.generics;
 
 import hu.dpc.edu.javase.demo.Department;
 import hu.dpc.edu.javase.demo.Employee;

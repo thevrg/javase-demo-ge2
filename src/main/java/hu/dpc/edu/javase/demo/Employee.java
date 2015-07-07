@@ -1,14 +1,16 @@
 package hu.dpc.edu.javase.demo;
 
+import hu.dpc.edu.javase.demo.generics.Entity;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  *
  * @author IQJB
  */
-public class Employee extends InfoExposerBaseClass implements Comparable {
+public class Employee extends InfoExposerBaseClass implements Comparable, Entity<Long> {
 
-    private static long counter;
+    private static final AtomicLong counter = new AtomicLong();
     private final long id;
     protected String name = "xxx";
     private double salary;
@@ -19,21 +21,25 @@ public class Employee extends InfoExposerBaseClass implements Comparable {
     static {
         System.out.println("Loading Employee class...");
         DEFAULT_NAME = System.getProperty("Emplyee.DEFAULT_NAME", "Unknown");
-        counter = Long.getLong("Employee.counter", 0L);
+        counter.set(Long.getLong("Employee.counter", 0L));
     }
 
     public static long getCounter() {
-        return counter;
+        return counter.get();
     }
 
     protected static long generateId() {
-        return ++counter;
+        return counter.incrementAndGet();
     }
 
     static {
         System.out.println("Employee class loaded successfully...");
     }
 
+    public Employee() {
+        this(generateId());
+    }
+    
     public Employee(long id) {
         this.id = id;
     }
@@ -53,7 +59,8 @@ public class Employee extends InfoExposerBaseClass implements Comparable {
 
     }
 
-    public long getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
